@@ -9,36 +9,22 @@ use App\Models\TransactionDetailModel;
 class TransaksiController extends BaseController
 {
     protected $cart;
-<<<<<<< HEAD
     // Tahapan  1
     protected $client;
     protected $apiKey;
     protected $transactionModel;
     protected $transactionDetailModel;
 
-=======
-    protected $client;
-    protected $apikey;
-    protected $transaction;
-    protected $transaction_detail;
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
     function __construct()
     {
         helper('number');
         helper('form');
         $this->cart = \Config\Services::cart();
-<<<<<<< HEAD
         // Tahapan 1
         $this->client = new \GuzzleHttp\Client();
         $this->apiKey = env('COST_KEY');
         $this->transactionModel = new TransactionModel();
         $this->transactionDetailModel = new TransactionDetailModel();
-=======
-        $this->client = new \GuzzleHttp\Client();
-        $this->apiKey = env('COST_KEY');
-        $this->transaction = new TransactionModel();
-        $this->transaction_detail = new TransactionDetailModel();
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
     }
 
     public function index()
@@ -112,11 +98,7 @@ class TransaksiController extends BaseController
         return redirect()->to(base_url('keranjang'));
     }
 
-<<<<<<< HEAD
     public function checkout() // Tambahan 1
-=======
-    public function checkout()
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
     {
         $data['items'] = $this->cart->contents();
         $data['total'] = $this->cart->total();
@@ -124,7 +106,6 @@ class TransaksiController extends BaseController
         return view('v_checkout', $data);
     }
 
-<<<<<<< HEAD
     // Tahapan 1
     public function getLocation()
     {
@@ -135,16 +116,6 @@ class TransaksiController extends BaseController
             'GET',
             'https://rajaongkir.komerce.id/api/v1/destination/domestic-destination?search=' . $search . '&limit=50',
             [
-=======
-    public function getLocation()
-    {
-            //keyword pencarian yang dikirimkan dari halaman checkout
-        $search = $this->request->getGet('search');
-
-        $response = $this->client->request(
-            'GET', 
-            'https://rajaongkir.komerce.id/api/v1/destination/domestic-destination?search='.$search.'&limit=50', [
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
                 'headers' => [
                     'accept' => 'application/json',
                     'key' => $this->apiKey,
@@ -152,16 +123,11 @@ class TransaksiController extends BaseController
             ]
         );
 
-<<<<<<< HEAD
         $body = json_decode($response->getBody(), true);
-=======
-        $body = json_decode($response->getBody(), true); 
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
         return $this->response->setJSON($body['data']);
     }
 
     public function getCost()
-<<<<<<< HEAD
     {
         //ID lokasi yang dikirimkan dari halaman checkout
         $destination = $this->request->getGet('destination');
@@ -172,17 +138,6 @@ class TransaksiController extends BaseController
             'POST',
             'https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost',
             [
-=======
-    { 
-            //ID lokasi yang dikirimkan dari halaman checkout
-        $destination = $this->request->getGet('destination');
-
-            //parameter daerah asal pengiriman, berat produk, dan kurir dibuat statis
-        //valuenya => 64999 : PEDURUNGAN TENGAH , 1000 gram, dan JNE
-        $response = $this->client->request(
-            'POST', 
-            'https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', [
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
                 'multipart' => [
                     [
                         'name' => 'origin',
@@ -208,21 +163,13 @@ class TransaksiController extends BaseController
             ]
         );
 
-<<<<<<< HEAD
         $body = json_decode($response->getBody(), true);
-=======
-        $body = json_decode($response->getBody(), true); 
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
         return $this->response->setJSON($body['data']);
     }
 
     public function buy()
     {
-<<<<<<< HEAD
         if ($this->request->getPost()) {
-=======
-        if ($this->request->getPost()) { 
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
             $dataForm = [
                 'username' => $this->request->getPost('username'),
                 'total_harga' => $this->request->getPost('total_harga'),
@@ -233,7 +180,6 @@ class TransaksiController extends BaseController
                 'updated_at' => date("Y-m-d H:i:s")
             ];
 
-<<<<<<< HEAD
             $this->transactionModel->insert($dataForm);
 
             $last_insert_id = $this->transactionModel->getInsertID();
@@ -245,29 +191,16 @@ class TransaksiController extends BaseController
                 // Hitung subtotal dengan harga yang sudah didiskon
                 $subtotalHarga = $value['qty'] * $value['price'];
 
-=======
-            $this->transaction->insert($dataForm);
-
-            $last_insert_id = $this->transaction->getInsertID();
-
-            foreach ($this->cart->contents() as $value) {
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
                 $dataFormDetail = [
                     'transaction_id' => $last_insert_id,
                     'product_id' => $value['id'],
                     'jumlah' => $value['qty'],
-<<<<<<< HEAD
                     'diskon' => $diskonNominal, // Simpan nominal diskon per item
                     'subtotal_harga' => $subtotalHarga, // Subtotal sudah termasuk diskon
-=======
-                    'diskon' => 0,
-                    'subtotal_harga' => $value['qty'] * $value['price'],
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
                 ];
 
-<<<<<<< HEAD
                 $this->transactionDetailModel->insert($dataFormDetail);
             }
 
@@ -284,14 +217,3 @@ class TransaksiController extends BaseController
         }
     }
 }
-=======
-                $this->transaction_detail->insert($dataFormDetail);
-            }
-
-            $this->cart->destroy();
-    
-            return redirect()->to(base_url());
-        }
-    }
-}
->>>>>>> e42709f191398b688eadf849410c56b1f5765176

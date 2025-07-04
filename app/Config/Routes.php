@@ -36,7 +36,6 @@ $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
     $routes->get('clear', 'TransaksiController::cart_clear');
 });
 
-<<<<<<< HEAD
 $routes->group('produk-kategori', ['filter' => 'auth'], function ($routes) {
     $routes->get('', 'ProdukKategoriController::index');
     $routes->post('', 'ProdukKategoriController::create');
@@ -47,7 +46,6 @@ $routes->group('produk-kategori', ['filter' => 'auth'], function ($routes) {
 // $routes->get('keranjang', 'TransaksiController::index', ['filter' => 'auth']);
 // $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 
-=======
 $routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
 $routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
 
@@ -59,7 +57,6 @@ $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('faq', 'Home::faq', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
-<<<<<<< HEAD
 // tambahan
 $routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']); // Tambahan 1
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']); // Tambahan 1
