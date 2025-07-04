@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # Aplikasi Toko Online - CodeIgniter 4
 
-Aplikasi toko online berbasis web yang dibangun menggunakan framework CodeIgniter 4 dengan fitur manajemen produk, sistem diskon, keranjang belanja, dan integrasi API pengiriman.
+Aplikasi toko online berbasis web yang dibangun menggunakan framework CodeIgniter 4 dengan fitur manajemen produk, sistem diskon, keranjang belanja, dan integrasi API pengiriman
 
 ## Fitur
 
