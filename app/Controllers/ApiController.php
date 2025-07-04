@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
+<<<<<<< HEAD
 // Tahapan 2
 use App\Models\UserModel;
 use App\Models\TransactionModel;
@@ -23,10 +24,26 @@ class ApiController extends ResourceController
     function __construct()
     {
         // Tahapan 2
+=======
+use App\Models\UserModel;
+use App\Models\TransactionModel;
+use App\Models\TransactionDetailModel;  
+
+class ApiController extends ResourceController
+{
+    protected $apikey;
+    protected $user;
+    protected $transaction;
+    protected $transaction_detail;
+
+    function __construct()
+    {
+>>>>>>> e42709f191398b688eadf849410c56b1f5765176
         $this->apiKey = env('API_KEY');
         $this->user = new UserModel();
         $this->transaction = new TransactionModel();
         $this->transaction_detail = new TransactionDetailModel();
+<<<<<<< HEAD
         $this->product = new ProductModel();
     }
 
@@ -85,6 +102,38 @@ class ApiController extends ResourceController
 
         return $this->respond($data);
     }
+=======
+    }
+    public function index()
+{
+    $data = [ 
+        'results' => [],
+        'status' => ["code" => 401, "description" => "Unauthorized"]
+    ];
+
+    $headers = $this->request->headers(); 
+
+    array_walk($headers, function (&$value, $key) {
+        $value = $value->getValue();
+    });
+
+    if(array_key_exists("Key", $headers)){
+        if ($headers["Key"] == $this->apiKey) {
+            $penjualan = $this->transaction->findAll();
+            
+            foreach ($penjualan as &$pj) {
+                $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+            }
+
+            $data['status'] = ["code" => 200, "description" => "OK"];
+            $data['results'] = $penjualan;
+
+        }
+    } 
+
+    return $this->respond($data);
+}
+>>>>>>> e42709f191398b688eadf849410c56b1f5765176
 
     /**
      * Return the properties of a resource object.
@@ -154,5 +203,8 @@ class ApiController extends ResourceController
         //
     }
 }
+<<<<<<< HEAD
 
 // and then make folder dashboard-toko and index.php file in it
+=======
+>>>>>>> e42709f191398b688eadf849410c56b1f5765176
