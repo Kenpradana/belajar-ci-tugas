@@ -5,50 +5,50 @@ Aplikasi toko online berbasis web yang dibangun menggunakan framework CodeIgnite
 
 ## Fitur
 
-### 🛍️ **Manajemen Produk**
+### **Manajemen Produk**
 - **CRUD Produk**: Tambah, edit, hapus, dan lihat daftar produk
 - **Kategori Produk**: Pengelompokan produk berdasarkan kategori
 - **Upload Gambar**: Fitur upload foto produk dengan validasi format dan ukuran
 - **Download Data**: Export data produk ke format Excel/CSV
 
-### 👥 **Sistem Autentikasi & Otorisasi**
+### **Sistem Autentikasi & Otorisasi**
 - **Multi-role User**: Admin dan Customer dengan akses yang berbeda
 - **Session Management**: Pengelolaan sesi pengguna yang aman
 - **Password Encryption**: Enkripsi password menggunakan PHP password_hash()
 - **Login/Logout**: Sistem masuk dan keluar yang secure
 
-### 🎯 **Sistem Diskon**
+### **Sistem Diskon**
 - **Manajemen Diskon Harian**: Admin dapat mengatur diskon berdasarkan tanggal
 - **Validasi Tanggal Unik**: Tidak boleh ada duplikasi diskon untuk tanggal yang sama
 - **Tampilan Real-time**: Notifikasi diskon aktif di header website
 - **Edit Readonly**: Form edit diskon dengan tanggal yang tidak bisa diubah
 - **Auto Apply**: Diskon otomatis diterapkan saat login berdasarkan tanggal
 
-### 🛒 **Keranjang Belanja (Shopping Cart)**
+### **Keranjang Belanja (Shopping Cart)**
 - **Add to Cart**: Menambahkan produk ke keranjang dengan diskon otomatis
 - **Cart Management**: Edit quantity, hapus item, kosongkan keranjang
 - **Price Calculation**: Perhitungan harga dengan diskon real-time
 - **Session Storage**: Keranjang tersimpan dalam sesi browser
 
-### 🚚 **Sistem Pengiriman**
+### **Sistem Pengiriman**
 - **Integrasi RajaOngkir API**: Cek ongkos kirim ke seluruh Indonesia
 - **Location Search**: Pencarian lokasi tujuan dengan autocomplete
 - **Shipping Options**: Pilihan layanan pengiriman (JNE, TIKI, POS)
 - **Cost Calculator**: Kalkulasi biaya pengiriman otomatis
 
-### 💳 **Transaksi & Checkout**
+### **Transaksi & Checkout**
 - **Checkout Process**: Proses pembelian dengan form alamat dan ongkir
 - **Transaction Detail**: Penyimpanan detail transaksi dan item yang dibeli
 - **Discount Tracking**: Pencatatan diskon yang diterapkan per item
 - **Order History**: Riwayat transaksi pembelian user
 
-### 📊 **Dashboard & Reporting**
+### **Dashboard & Reporting**
 - **Admin Dashboard**: Panel admin untuk mengelola seluruh sistem
 - **Transaction Dashboard**: Dashboard terpisah untuk melihat data transaksi
 - **API Integration**: Webservice untuk mengakses data transaksi
 - **Real-time Data**: Data yang selalu terupdate dengan auto-refresh
 
-### 🔌 **API & Webservice**
+### **API & Webservice**
 - **RESTful API**: API untuk mengakses data transaksi
 - **API Authentication**: Sistem autentikasi API menggunakan API Key
 - **JSON Response**: Format response yang standar dan konsisten
