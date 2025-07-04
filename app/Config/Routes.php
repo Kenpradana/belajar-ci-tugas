@@ -43,28 +43,13 @@ $routes->group('produk-kategori', ['filter' => 'auth'], function ($routes) {
     $routes->get('delete/(:any)', 'ProdukKategoriController::delete/$1');
 });
 
-// $routes->get('keranjang', 'TransaksiController::index', ['filter' => 'auth']);
-// $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
-
 $routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
 $routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
-
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);
 $routes->get('get-cost', 'TransaksiController::getCost', ['filter' => 'auth']);
 
 $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
 $routes->get('faq', 'Home::faq', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
-// tambahan
-$routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']); // Tambahan 1
-$routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']); // Tambahan 1
-$routes->get('get-cost', 'TransaksiController::getCost', ['filter' => 'auth']); // Tambahan 1
-$routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']); // Tambahan 1
-
-$routes->get('profile', 'Home::profile', ['filter' => 'auth']); // Tahapan 2
-$routes->resource('api', ['controller' => 'apiController']); // Tahapan 2
-=======
 $routes->resource('api', ['controller' => 'apiController']);
->>>>>>> e42709f191398b688eadf849410c56b1f5765176
