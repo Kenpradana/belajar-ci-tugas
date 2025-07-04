@@ -103,7 +103,7 @@ Tambahkan konfigurasi API di file `.env`:
 API_KEY = random123678abcghi
 
 # RajaOngkir API Key (daftar di rajaongkir.com)
-COST_KEY = your-rajaongkir-api-key
+COST_KEY = pzsaabTx6d84e93992b56070guhCr1D1
 
 # Base URL aplikasi
 app.baseURL = 'http://localhost:8080/'
@@ -146,11 +146,11 @@ php spark serve
 ### Data Login Default
 ```
 Admin:
-- Username: admin123
+- Username: jwibowo
 - Password: 1234567
 
 Customer:
-- Username: customer123  
+- Username: kani35 
 - Password: 1234567
 ```
 
@@ -318,8 +318,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Kontak
 
-Developer: [Nama Developer]
-Email: [email@example.com]
+Developer: [Kent Pradana]
+Email: [kenpradana8880@gmail.com]
 Project Link: [https://github.com/username/project-name]
 
 ---
