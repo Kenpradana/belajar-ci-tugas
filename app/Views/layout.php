@@ -1,8 +1,8 @@
 <?php
 $hlm = "Home";
 if (uri_string() != "") {
-  // Ganti '-' dengan spasi sebelum ucwords
-  $hlm = ucwords(str_replace('-', ' ', uri_string()));
+    // Ganti '-' dengan spasi sebelum ucwords
+    $hlm = ucwords(str_replace('-', ' ', uri_string()));
 }
 ?>
 <!DOCTYPE html>
@@ -35,6 +35,15 @@ if (uri_string() != "") {
 
     <!-- Template Main CSS File -->
     <link href="<?php echo base_url() ?>NiceAdmin/assets/css/style.css" rel="stylesheet">
+
+    <!-- Tahapan 1 -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- End Tahapan 1  -->
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -103,6 +112,9 @@ if (uri_string() != "") {
     <!-- Template Main JS File -->
     <script src="<?php echo base_url() ?>NiceAdmin/assets/js/main.js"></script>
 
+
+    <!-- Tahapan 1 -->
+    <?= $this->renderSection('script') ?>
 </body>
 
 </html>

@@ -26,6 +26,12 @@
                 </a>
             </li><!-- End Produk Nav -->
             <li class="nav-item">
+                <a class="nav-link <?php echo (uri_string() == 'diskon') ? "" : "collapsed" ?>" href="diskon">
+                    <i class="bi bi-receipt"></i>
+                    <span>Diskon</span>
+                </a>
+            </li><!-- End Produk Nav -->
+            <li class="nav-item">
                 <a class="nav-link <?php echo (uri_string() == 'produk-kategori') ? "" : "collapsed" ?>" href="produk-kategori">
                     <i class="bi bi-receipt"></i>
                     <span>Kategori Produk</span>
@@ -34,6 +40,7 @@
         <?php
         }
         ?>
+
 
         <li class="nav-item">
             <a class="nav-link <?php echo (uri_string() == 'profile') ? "" : "collapsed" ?>" href="profile">

@@ -16,6 +16,12 @@
         </form>
     </div><!-- End Search Bar -->
 
+    <?php if (session()->get('diskon_nominal')): ?>
+    <span class="badge bg-success mx-3 py-2 px-3" >
+        <strong>Hari ini ada diskon per item  <?= session()->get('diskon_nominal') ?></strong>
+    </span>
+    <?php endif; ?>
+
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 

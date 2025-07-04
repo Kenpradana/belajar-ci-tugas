@@ -100,15 +100,15 @@ _modules/*
 .idea/
 *.iml
 
-# NetBeans
-/nbproject/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
-/nbactions.xml
-/nb-configuration.xml
-/.nb-gradle/
+# Netbeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
 
 # Sublime Text
 *.tmlanguage.cache
@@ -124,3 +124,5 @@ _modules/*
 
 /results/
 /phpunit*.xml
+/.phpunit.*.cache
+

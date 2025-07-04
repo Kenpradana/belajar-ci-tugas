@@ -1,68 +1,326 @@
-# CodeIgniter 4 Application Starter
+# Aplikasi Toko Online - CodeIgniter 4
 
-## What is CodeIgniter?
+Aplikasi toko online berbasis web yang dibangun menggunakan framework CodeIgniter 4 dengan fitur manajemen produk, sistem diskon, keranjang belanja, dan integrasi API pengiriman.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Fitur
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### 🛍️ **Manajemen Produk**
+- **CRUD Produk**: Tambah, edit, hapus, dan lihat daftar produk
+- **Kategori Produk**: Pengelompokan produk berdasarkan kategori
+- **Upload Gambar**: Fitur upload foto produk dengan validasi format dan ukuran
+- **Download Data**: Export data produk ke format Excel/CSV
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### 👥 **Sistem Autentikasi & Otorisasi**
+- **Multi-role User**: Admin dan Customer dengan akses yang berbeda
+- **Session Management**: Pengelolaan sesi pengguna yang aman
+- **Password Encryption**: Enkripsi password menggunakan PHP password_hash()
+- **Login/Logout**: Sistem masuk dan keluar yang secure
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 🎯 **Sistem Diskon**
+- **Manajemen Diskon Harian**: Admin dapat mengatur diskon berdasarkan tanggal
+- **Validasi Tanggal Unik**: Tidak boleh ada duplikasi diskon untuk tanggal yang sama
+- **Tampilan Real-time**: Notifikasi diskon aktif di header website
+- **Edit Readonly**: Form edit diskon dengan tanggal yang tidak bisa diubah
+- **Auto Apply**: Diskon otomatis diterapkan saat login berdasarkan tanggal
 
-## Installation & updates
+### 🛒 **Keranjang Belanja (Shopping Cart)**
+- **Add to Cart**: Menambahkan produk ke keranjang dengan diskon otomatis
+- **Cart Management**: Edit quantity, hapus item, kosongkan keranjang
+- **Price Calculation**: Perhitungan harga dengan diskon real-time
+- **Session Storage**: Keranjang tersimpan dalam sesi browser
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### 🚚 **Sistem Pengiriman**
+- **Integrasi RajaOngkir API**: Cek ongkos kirim ke seluruh Indonesia
+- **Location Search**: Pencarian lokasi tujuan dengan autocomplete
+- **Shipping Options**: Pilihan layanan pengiriman (JNE, TIKI, POS)
+- **Cost Calculator**: Kalkulasi biaya pengiriman otomatis
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+### 💳 **Transaksi & Checkout**
+- **Checkout Process**: Proses pembelian dengan form alamat dan ongkir
+- **Transaction Detail**: Penyimpanan detail transaksi dan item yang dibeli
+- **Discount Tracking**: Pencatatan diskon yang diterapkan per item
+- **Order History**: Riwayat transaksi pembelian user
 
-## Setup
+### 📊 **Dashboard & Reporting**
+- **Admin Dashboard**: Panel admin untuk mengelola seluruh sistem
+- **Transaction Dashboard**: Dashboard terpisah untuk melihat data transaksi
+- **API Integration**: Webservice untuk mengakses data transaksi
+- **Real-time Data**: Data yang selalu terupdate dengan auto-refresh
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+### 🔌 **API & Webservice**
+- **RESTful API**: API untuk mengakses data transaksi
+- **API Authentication**: Sistem autentikasi API menggunakan API Key
+- **JSON Response**: Format response yang standar dan konsisten
+- **External Dashboard**: Dashboard terpisah yang mengonsumsi API
 
-## Important Change with index.php
+## Instalasi
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Prasyarat Sistem
+- **PHP**: Versi 7.4 atau lebih tinggi (disarankan PHP 8.1+)
+- **Web Server**: Apache/Nginx dengan mod_rewrite
+- **Database**: MySQL 5.7+ atau MariaDB 10.3+
+- **Composer**: Package manager untuk PHP
+- **Extensions**: intl, mbstring, json, mysqlnd, curl
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### Langkah Instalasi
 
-**Please** read the user guide for a better explanation of how CI4 works!
+#### 1. Clone/Download Project
+```bash
+git clone <repository-url>
+cd belajar-ci
+```
 
-## Repository Management
+#### 2. Install Dependencies
+```bash
+composer install
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+#### 3. Konfigurasi Environment
+```bash
+# Copy file environment
+cp env .env
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+# Edit file .env sesuai konfigurasi server Anda
+```
 
-## Server Requirements
+#### 4. Konfigurasi Database
+Edit file `.env` dan sesuaikan pengaturan database:
+```env
+database.default.hostname = localhost
+database.default.database = nama_database
+database.default.username = username_db
+database.default.password = password_db
+database.default.DBDriver = MySQLi
+database.default.DBPrefix = 
+database.default.port = 3306
+```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+#### 5. Konfigurasi API Keys
+Tambahkan konfigurasi API di file `.env`:
+```env
+# API Key untuk internal webservice
+API_KEY = random123678abcghi
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+# RajaOngkir API Key (daftar di rajaongkir.com)
+COST_KEY = your-rajaongkir-api-key
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+# Base URL aplikasi
+app.baseURL = 'http://localhost:8080/'
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+# Timezone
+app.appTimezone = 'Asia/Jakarta'
+```
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+#### 6. Setup Database
+```bash
+# Jalankan migrasi database
+php spark migrate
+
+# Jalankan seeder untuk data awal
+php spark db:seed UserSeeder
+php spark db:seed ProductSeeder
+php spark db:seed ProductDiskonSeeder
+```
+
+#### 7. Setup Permissions
+```bash
+# Pastikan folder writable dapat ditulis
+chmod -R 755 writable/
+chmod -R 755 public/img/
+```
+
+#### 8. Jalankan Server
+```bash
+# Development server
+php spark serve
+
+# Atau gunakan web server seperti Apache/Nginx
+# Arahkan document root ke folder public/
+```
+
+### Akses Aplikasi
+- **URL Utama**: http://localhost:8080/
+- **Dashboard API**: http://localhost/dashboard-toko/
+
+### Data Login Default
+```
+Admin:
+- Username: admin123
+- Password: 1234567
+
+Customer:
+- Username: customer123  
+- Password: 1234567
+```
+
+## Struktur Proyek
+
+```
+belajar-ci/
+├── app/
+│   ├── Config/
+│   │   ├── App.php                 # Konfigurasi aplikasi
+│   │   ├── Routes.php              # Routing aplikasi
+│   │   ├── Filters.php             # Filter autentikasi
+│   │   └── dan lainnya...             
+|   |   
+│   ├── Controllers/
+│   │   ├── AuthController.php      # Autentikasi & login
+│   │   ├── Home.php               # Controller utama
+│   │   ├── ProdukController.php   # Manajemen produk
+│   │   ├── DiskonController.php   # Manajemen diskon
+│   │   ├── TransaksiController.php # Keranjang & transaksi
+│   │   └── ApiController.php      # API webservice
+│   ├── Models/
+│   │   ├── UserModel.php          # Model user
+│   │   ├── ProductModel.php       # Model produk
+│   │   ├── ProductDiskonModel.php # Model diskon
+│   │   ├── TransactionModel.php   # Model transaksi
+│   │   └── TransactionDetailModel.php # Model detail transaksi
+│   ├── Views/
+│   │   ├── layout.php             # Template utama
+│   │   ├── layout_clear.php             # Template clear
+│   │   ├── components/
+│   │   │   ├── header.php         # Header dengan notifikasi diskon
+│   │   │   ├── footer.php         # footer
+│   │   │   └── sidebar.php        # Sidebar navigasi
+│   │   ├── v_home.php             # Halaman utama produk
+│   │   ├── v_faq.php              # Halaman utama faq
+│   │   ├── v_produk.php           # Halaman utama produk
+│   │   ├── v_produkPDF.php        # Halaman PDF
+│   │   ├── v_login.php            # Halaman login
+│   │   ├── v_produk.php           # Manajemen produk
+│   │   ├── v_diskon.php           # Manajemen diskon
+│   │   ├── v_keranjang.php        # Halaman keranjang
+│   │   ├── v_checkout.php         # Halaman checkout
+│   │   └── v_profile.php          # Riwayat transaksi
+│   ├── Database/
+│   │   ├── Migrations/
+│   │   │   ├── 2025-xxx-User.php
+│   │   │   ├── 2025-xxx-Product.php
+│   │   │   ├── 2025-xxx-Transaction.php
+│   │   │   ├── 2025-xxx-TransactionDetail.php
+│   │   │   └── 2025-07-02-ProductDiskon.php
+│   │   └── Seeds/
+│   │       ├── UserSeeder.php
+│   │       ├── ProductSeeder.php
+│   │       └── ProductDiskonSeeder.php
+│   └── Filters/
+│       └── Auth.php               # Filter autentikasi
+├── public/
+│   ├── index.php                  # Entry point aplikasi
+│   ├── img/                       # Folder upload gambar produk
+│   ├── NiceAdmin/                 # Template CSS/JS
+│   └── dashboard-toko/
+│       └── index.php              # Dashboard eksternal API
+├── writable/
+│   ├── cache/                     # Cache aplikasi
+│   ├── logs/                      # Log sistem
+│   └── session/                   # Session storage
+├── vendor/                        # Dependencies Composer
+├── .env                          # Konfigurasi environment
+├── composer.json                 # Dependencies PHP
+└── README.md                     # Dokumentasi ini
+```
+
+## Teknologi yang Digunakan
+
+### Backend
+- **CodeIgniter 4**: Framework PHP untuk rapid development
+- **PHP 8.1+**: Bahasa pemrograman server-side
+- **MySQL**: Database relational untuk menyimpan data
+- **Composer**: Dependency manager untuk PHP
+
+### Frontend
+- **Bootstrap 5**: Framework CSS responsive
+- **jQuery**: Library JavaScript untuk interaktivitas
+- **Select2**: Plugin untuk dropdown dengan search
+- **DataTables**: Plugin untuk tabel dengan fitur sorting/filtering
+- **Bootstrap Icons**: Icon set untuk UI
+
+### External Services
+- **RajaOngkir API**: Layanan cek ongkos kirim Indonesia
+- **Guzzle HTTP**: HTTP client untuk API calls
+
+### Features & Libraries
+- **CodeIgniter Cart**: Library untuk keranjang belanja
+- **Password Hashing**: Keamanan password menggunakan PHP native
+- **Session Management**: Pengelolaan sesi user
+- **File Upload**: Upload dan validasi file gambar
+- **Form Validation**: Validasi input form
+- **Database Migration**: Versi kontrol database
+- **Database Seeding**: Data awal untuk development
+
+## API Documentation
+
+### Authentication
+Semua endpoint API memerlukan header authentication:
+```
+Key: your-api-key-here
+```
+
+### Endpoints
+
+#### GET /api
+Mengambil semua data transaksi dengan detail
+```json
+Response:
+{
+  "status": {
+    "code": 200,
+    "description": "OK"
+  },
+  "results": [
+    {
+      "id": 1,
+      "username": "customer123",
+      "total_harga": 1500000,
+      "alamat": "Jl. Contoh No. 123",
+      "ongkir": 15000,
+      "status": 1,
+      "total_item": 3,
+      "total_diskon": 150000,
+      "created_at": "2025-07-03 10:30:00",
+      "details": [...]
+    }
+  ]
+}
+```
+
+## Troubleshooting
+
+### Masalah Umum
+
+1. **Timezone Issue**: Pastikan `app.appTimezone = 'Asia/Jakarta'` di `.env`
+2. **Database Connection**: Periksa konfigurasi database di file `.env`
+3. **File Permissions**: Pastikan folder `writable/` dan `public/img/` dapat ditulis
+4. **API Key**: Pastikan API key RajaOngkir sudah benar dan aktif
+5. **Mod Rewrite**: Pastikan mod_rewrite Apache sudah aktif
+
+### Debug Mode
+Untuk development, aktifkan debug mode di `.env`:
+```env
+CI_ENVIRONMENT = development
+```
+
+## Kontribusi
+
+1. Fork repository ini
+2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## Lisensi
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Kontak
+
+Developer: [Nama Developer]
+Email: [email@example.com]
+Project Link: [https://github.com/username/project-name]
+
+---
+
+**Catatan**: Aplikasi ini dibuat untuk keperluan pembelajaran dan development. Untuk production, pastikan melakukan security audit dan optimisasi performance yang sesuai.
